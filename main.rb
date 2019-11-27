@@ -9,17 +9,32 @@ puts "ONE TO ONE RELATIONSHIPS IN RUBY:"
 puts "**********************************\n"
 
 # Make an instance of Order with ID 1207
+order_one = Order.new(1207)
 # Make an instance of Order with ID 1392
+order_two = Order.new(1392)
 # Make an instance of Shipment with a tracking no. of 34668
+shipment_one = Shipment.new(34668)
 # Make an instance of Shipment with a tracking no. of 66243
+shipment_two = Shipment.new(66243)
 
 # Read the @shipment attribute of order 1207
 puts "\n\n\nBefore setting the @shipment attribute, we can read the value of @shipment on the Order instance and get nil (which prints as empty string)"
 
+p order_one.shipment
+
 # Set the attribute of @shipment in order 1207 to shipment 334668
+order_one.shipment = shipment_one
+order_two.shipment = shipment_two
 
 # Read the shipment attribute of order 1207 again
 puts "\n\n\nAfter setting the @shipment attribute, we can read the value of @shipment on the Order instance and get a value!"
+order_array = []
+order_array << order_one
+order_array << order_two
+
+order_array.each do |curr_order|
+  puts "Order Number #{curr_order.id} has a tracking number of #{curr_order.shipment.tracking_number}"
+end
 
 
 
@@ -29,21 +44,35 @@ puts "ONE TO MANY RELATIONSHIPS IN RUBY:"
 puts "**********************************\n"
 
 # Make an instance of Merchant with name "Hamled"
+merchant_a = Merchant.new("Hamled")
 # Make an instance of Merchant with name "tildeee"
+merchant_a = Merchant.new("tildeee")
 # Make an instance of Product with name "Sandals"
+product_first = Product.new("Sandals")
 # Make an instance of Product with name "Fish Oil"
+product_second = Product.new("Fish Oil")
 # Make an instance of Product with name "Bath Salts"
+product_third = Product.new("Bath Salts")
 # Make an instance of Product with name "Almond Flour"
+product_fourth = Product.new("Almond Flour")
 
 # Read the @products attribute of Hamled
 puts "\n\n\nBefore modifying the @products attribute, we can read the value of @product on the Merchant instance and get an empty array (which prints as empty string)"
 
+p merchant_a.products
+
 # Shovel the products "sandals" and "fish oil" into Hamled's @products array
+merchant_a.products << product_first
+merchant_a.products << product_second
 
 # Read the @products attribute of Hamled again
 puts "\n\n\nAfter modifying the @products attribute, we can read the value of @products on the Merchant instance and get a value!"
+p merchant_a.products
 
 # What is the data type of Hamled's @products attribute?
 # How do we read the names of every product that Hamled has?
+merchant_a.products.each do |product|
+  p "#{merchant_a.name} has #{product.name}"
+end
 
 # Optional: Can we refactor that?
